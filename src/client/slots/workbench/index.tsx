@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Display, Split } from 'mo/client/components';
-import { useAutoPos, useConnector, useDynamic } from 'mo/client/hooks';
+import { useAutoPos, useCheckAuxiliaryBar, useConnector, useDynamic } from 'mo/client/hooks';
 import type { ILayoutController } from 'mo/controllers/layout';
 import { Toaster } from 'sonner';
 
@@ -23,7 +23,8 @@ export default function Workbench({ onSideChange, onEditorChange }: IWorkbenchPr
     const ContextMenu = useDynamic('contextMenu');
     const ref = useRef<HTMLElement>(null);
 
-    const [sideRef, sidePos, sideChange] = useAutoPos<HTMLDivElement>(layout.splitPanePos);
+    const [isShowAuxiliaryBar, isActiveAuxiliaryBar] = useCheckAuxiliaryBar()
+    const [sideRef, sidePos, sideChange] = useAutoPos<HTMLDivElement>(layout.splitPanePos, 'vertical', isShowAuxiliaryBar, isActiveAuxiliaryBar);
     const [editorRef, editorPos, editorChange] = useAutoPos<HTMLDivElement>(
         layout.panel.panelMaximized ? [0, 'auto'] : layout.horizontalSplitPanePos,
         'horizontal'

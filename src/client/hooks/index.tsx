@@ -12,3 +12,4 @@ export { default as useOverlay } from './useOverlay';
 export { default as useResize } from './useResize';
 export { default as useSettings } from './useSettings';
 export { default as useSlide } from './useSlide';
+export { default as useCheckAuxiliaryBar } from './useCheckAuxiliaryBar';
